@@ -1,0 +1,3 @@
+# milk
+
+Gentoo custom repository
