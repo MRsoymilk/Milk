@@ -37,11 +37,14 @@ src_install(){
 	dodir "/opt"
 	cp -pPR "${S}" "${D}/opt/${PN}" || die "Failed to copy files"
 	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/${EXEC_NAME}"
+	insinto /usr/share/applications/
+	doins ${FILESDIR}/visual-studio-code.desktop
 	make_desktop_entry "${EXEC_NAME}" "Visual Studio Code" "${PN}" "Development;IDE"
 	newicon "${S}/resources/app/resources/linux/code.png" "${PN}.png"
 }
 
 pkg_postinst(){
+	update-desktop-database
 	elog "to install additional utils, check them in:"
 	elog "https://code.visualstudio.com/Docs/setup#_additional-tools"
 }
